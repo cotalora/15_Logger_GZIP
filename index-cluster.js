@@ -19,7 +19,7 @@ const args = minimist(process.argv, optionalArgs);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('port', 8081 || process.env.PORT);
+app.set('port', process.env.PORT || 8081);
 
 const numCPUs = os.cpus().length;
 
