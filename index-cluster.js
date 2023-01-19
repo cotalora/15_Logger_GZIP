@@ -19,7 +19,7 @@ const args = minimist(process.argv, optionalArgs);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('port', process.env.PORT || 8081);
+app.set('port', process.env.PORT);
 
 const numCPUs = os.cpus().length;
 
@@ -34,6 +34,6 @@ if (cluster.isPrimary && args.mode === 'CLUSTER') {
 } else {
     app.use('/', routes);
     
-    app.listen(app.get('port'), () => console.log(`Listening on port ${app.get('port')} in ${args.mode} mode - PID WORKER ${process.pid}`))
+    app.listen(app.get('port'), () => console.log(`Listening ok on port ${app.get('port')} in ${args.mode} mode - PID WORKER ${process.pid}`))
         .on('error', error => console.log('Server has an error: ', error));
 }
